@@ -48,10 +48,18 @@ const Register = () => {
       setFormData(prev => ({ ...prev, totalAmount: total }));
     }
     setActiveStep((prev) => prev + 1);
+    // Add setTimeout to ensure scroll happens after state update
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   const handleBack = () => {
     setActiveStep((prev) => prev - 1);
+    // Add setTimeout to ensure scroll happens after state update
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   const nonTechnicalEvents = [
