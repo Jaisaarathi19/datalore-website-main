@@ -80,9 +80,9 @@ const Navbar = () => {
             margin: '0 auto',
             width: '100%',
             px: { 
-              xs: 1,  // Reduced padding on small screens
-              sm: 2,  // Reduced padding on medium screens
-              md: 3   // Reduced padding on large screens
+              xs: 2,  // Increased padding for better spacing
+              sm: 3,  // Increased padding for better spacing
+              md: 4   // Increased padding for better spacing
             }
           }}>
             <Toolbar 
@@ -90,17 +90,16 @@ const Navbar = () => {
               sx={{ 
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'flex-start',
-                gap: { xs: 1, sm: 2, md: 3 },
+                justifyContent: 'space-between', // Changed to space-between for better alignment
                 minHeight: { 
-                  xs: '64px',   // Small screens
-                  sm: '72px',   // Medium screens
-                  md: scrolled ? '80px' : '96px' // Large screens - reduced for better proportion
+                  xs: '56px',   // Reduced height for better mobile view
+                  sm: '64px',   // Adjusted for medium screens
+                  md: scrolled ? '72px' : '88px' // Adjusted for large screens
                 },
                 transition: 'all 0.3s ease-in-out',
               }}
             >
-              {/* Logo - Visible on all screens */}
+              {/* Logo - Adjusted for better mobile visibility */}
               <Typography
                 variant="h6"
                 component={RouterLink}
@@ -108,22 +107,22 @@ const Navbar = () => {
                 sx={{
                   fontFamily: 'orbiton, sans-serif',
                   fontSize: { 
-                    xs: '1.1rem',  // Reduced size on small screens
-                    sm: '1.3rem',  // Reduced size on medium screens
-                    md: scrolled ? '1.5rem' : '1.7rem', // Reduced size on large screens
-                    lg: scrolled ? '1.7rem' : '1.9rem'
+                    xs: '1.2rem',
+                    sm: '1.4rem',
+                    md: scrolled ? '1.6rem' : '1.8rem',
+                    lg: scrolled ? '1.8rem' : '2rem'
                   },
                   fontWeight: 800,
                   background: 'linear-gradient(45deg, #fff 30%, #9C27B0 90%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textDecoration: 'none',
-                  letterSpacing: { xs: '0.5px', sm: '1px' }, // Reduced letter spacing
+                  letterSpacing: { xs: '0.5px', sm: '1px' },
                   transition: 'all 0.3s ease-in-out',
                   flexShrink: 0,
-                  marginRight: 'auto',
+                  marginRight: { xs: 2, sm: 3 },
                   '&:hover': {
-                    transform: 'scale(1.03)', // Reduced scale effect
+                    transform: 'scale(1.02)',
                     background: 'linear-gradient(45deg, #9C27B0 30%, #fff 90%)',
                     WebkitBackgroundClip: 'text',
                   }
@@ -134,9 +133,12 @@ const Navbar = () => {
 
               {/* Desktop Navigation - Hidden on mobile */}
               <Box sx={{ 
-                display: { xs: 'none', md: 'flex' },
+                display: { xs: 'none', sm: 'none', md: 'flex' },
                 alignItems: 'center',
-                gap: { md: 3, lg: 4 }
+                gap: { md: 3, lg: 4 },
+                ml: 'auto',
+                flexGrow: { md: 1 },
+                justifyContent: { md: 'flex-end' }
               }}>
                 {pages.map((page, index) => (
                   <motion.div
@@ -152,12 +154,13 @@ const Navbar = () => {
                       to={page.path}
                       sx={{
                         color: location.pathname === page.path ? '#BA68C8' : 'white',
-                        fontSize: { md: '0.95rem', lg: '1rem' },
-                        padding: '8px 16px',
-                        fontWeight: 500,
+                        fontSize: { md: '0.95rem', lg: '1.1rem' },
+                        padding: { md: '8px 16px', lg: '10px 20px' },
+                        fontWeight: 600,
                         letterSpacing: '0.5px',
                         position: 'relative',
                         minWidth: 'auto',
+                        whiteSpace: 'nowrap',
                         '&::after': {
                           content: '""',
                           position: 'absolute',
@@ -167,13 +170,13 @@ const Navbar = () => {
                           height: '2px',
                           background: 'linear-gradient(90deg, #9C27B0, #BA68C8)',
                           transition: 'all 0.3s ease',
-                          transform: 'translateX(-50%)',
+                          transform: 'translateX(-50%)'
                         },
                         '&:hover': {
                           color: '#BA68C8',
                           background: 'rgba(156, 39, 176, 0.08)',
                           '&::after': {
-                            width: '80%',
+                            width: '80%'
                           }
                         }
                       }}
@@ -182,68 +185,23 @@ const Navbar = () => {
                     </Button>
                   </motion.div>
                 ))}
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    component={RouterLink}
-                    to="/register"
-                    variant="contained"
-                    sx={{
-                      fontSize: '0.95rem',
-                      padding: '10px 20px',
-                      background: 'linear-gradient(135deg, #9C27B0 0%, #BA68C8 100%)',
-                      color: '#fff',
-                      fontWeight: 600,
-                      textTransform: 'none',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 15px rgba(156, 39, 176, 0.3)',
-                      transition: 'all 0.3s ease',
-                      marginLeft: 2,
-                      whiteSpace: 'nowrap',
-                      position: 'relative',
-                      zIndex: 1,
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'linear-gradient(135deg, #BA68C8 0%, #9C27B0 100%)',
-                        borderRadius: '8px',
-                        opacity: 0,
-                        transition: 'opacity 0.3s ease',
-                        zIndex: -1,
-                      },
-                      '&:hover': {
-                        boxShadow: '0 8px 25px rgba(156, 39, 176, 0.5)',
-                        transform: 'translateY(-2px)',
-                        '&::before': {
-                          opacity: 1,
-                        }
-                      }
-                    }}
-                  >
-                    Register Now
-                  </Button>
-                </motion.div>
               </Box>
-
               {/* Mobile Menu Button - Hidden on desktop */}
-              <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' }, alignItems: 'center' }}>
                 <IconButton
                   onClick={() => setIsOpen(true)}
                   sx={{
                     color: 'white',
+                    padding: { xs: '8px', sm: '12px' },
+                    marginLeft: 2,
                     '&:hover': {
-                      backgroundColor: 'rgba(156, 39, 176, 0.1)'
-                    }
+                      backgroundColor: 'rgba(156, 39, 176, 0.1)',
+                      transform: 'scale(1.05)'
+                    },
+                    transition: 'all 0.2s ease-in-out'
                   }}
                 >
-                  <MenuIcon />
+                  <MenuIcon sx={{ fontSize: { xs: '24px', sm: '28px' } }} />
                 </IconButton>
               </Box>
             </Toolbar>

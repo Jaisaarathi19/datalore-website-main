@@ -63,20 +63,24 @@ const CountdownTimer = () => {
           }}
         >
           <Typography
-            variant="h6"
+            id="countdown-timer-heading"
+            variant="h4"
             align="center"
             sx={{
               mb: 2,
               color: 'rgba(255, 255, 255, 0.9)',
               fontWeight: 500,
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' },
+              letterSpacing: '0.02em',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
             }}
           >
             Event Begins In
           </Typography>
 
-          <Grid container spacing={2} justifyContent="space-between" sx={{ maxWidth: '100%', mx: 'auto' }}>
+          <Grid container spacing={{ xs: 4, sm: 5 }} justifyContent="center" sx={{ maxWidth: '100%', mx: 'auto', px: { xs: 1.5, sm: 2.5 } }}>
             {timeUnits.map((unit) => (
-              <Grid item xs={2.7} key={unit.label}>
+              <Grid item xs={3} sm={3} key={unit.label} sx={{ px: { xs: 0.75, sm: 1.25 } }}>
                 <Box
                   sx={{
                     display: 'flex',
@@ -86,20 +90,22 @@ const CountdownTimer = () => {
                   }}
                 >
                   <Paper
+                    id={`countdown-timer-${unit.label.toLowerCase()}`}
                     elevation={2}
                     sx={{
-                      width: '100%',
+                      width: { xs: '55px', sm: '75px', md: '90px', lg: '100px' },
                       aspectRatio: '1/1',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       bgcolor: 'rgba(18, 18, 18, 0.95)',
                       border: '2px solid rgba(156, 39, 176, 0.4)',
-                      borderRadius: '16px',
+                      borderRadius: { xs: '10px', sm: '14px', md: '16px' },
                       position: 'relative',
                       overflow: 'hidden',
                       boxShadow: '0 8px 32px rgba(156, 39, 176, 0.15)',
                       transition: 'all 0.3s ease',
+                      mx: 'auto',
                       '&:hover': {
                         transform: 'translateY(-5px)',
                         boxShadow: '0 12px 40px rgba(156, 39, 176, 0.25)',
@@ -117,7 +123,7 @@ const CountdownTimer = () => {
                     }}
                   >
                     <Typography
-                      variant={isMobile ? 'h3' : 'h1'}
+                      variant={isMobile ? 'h4' : 'h2'}
                       sx={{
                         fontWeight: 800,
                         color: theme.palette.primary.main,
@@ -126,7 +132,8 @@ const CountdownTimer = () => {
                         letterSpacing: '0.05em',
                         transform: 'scale(0.95)',
                         transition: 'transform 0.3s ease, color 0.3s ease',
-                        fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
+                        fontSize: { xs: '1.25rem', sm: '1.75rem', md: '2.25rem', lg: '2.5rem' },
+                        lineHeight: 1.2,
                         '&:hover': {
                           transform: 'scale(1)',
                           color: theme.palette.primary.light
@@ -137,11 +144,11 @@ const CountdownTimer = () => {
                     </Typography>
                   </Paper>
                   <Typography
-                    variant="h6"
+                    variant="subtitle1"
                     sx={{
-                      mt: 2,
+                      mt: { xs: 2.5, sm: 3 },
                       color: 'rgba(255, 255, 255, 0.85)',
-                      fontSize: { xs: '1rem', sm: '1.2rem', md: '1.4rem' },
+                      fontSize: { xs: '0.7rem', sm: '0.85rem', md: '0.95rem' },
                       fontWeight: 600,
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase'

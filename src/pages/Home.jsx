@@ -39,15 +39,32 @@ const Home = () => {
   const organizers = [
     {
       name: "Dr. J.M Gnanesekaran",
-      role: "Head of Department\n\nArtificial Intelligence and Data Science",
+      role: "Head of Department",
+      department: "Artificial Intelligence and Data Science",
       image: DEFAULT_PROFILE_IMAGE,
+      expertise: ['AI Research', 'Data Analytics', 'Machine Learning']
     },
     {
-      name: "Dr . S.Suresh Kumar",
-      role: "Assosiate Professor\nArtificial Intelligence and Data Science",
-      image: DEFAULT_PROFILE_IMAGE,
+      name: "Dr. S.Suresh Kumar",
+      role: "Associate Professor",
+      department: "Artificial Intelligence and Data Science",
+      image: "/assets/images/suresh kumar.jpg",
+      expertise: ['Deep Learning', 'Computer Vision', 'Pattern Recognition']
     }
   ];
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    },
+    hover: {
+      y: -10,
+      transition: { duration: 0.3 }
+    }
+  };
 
   return (
     <Container maxWidth="lg">
@@ -164,7 +181,7 @@ const Home = () => {
                 <Box
                   sx={{
                     width: '100%',
-                    maxWidth: '280px',
+                    maxWidth: '350px',
                     aspectRatio: '1',
                     position: 'relative',
                     borderRadius: '50%',
@@ -250,14 +267,14 @@ const Home = () => {
         </Card>
       </Box>
 
-      {/* Organizers Section */}
+      {/* Faculty Coordinators Section */}
       <Box sx={{ py: 8 }}>
         <Typography
           variant="h3"
           component="h2"
           align="center"
           gutterBottom
-          sx={{ 
+          sx={{
             mb: 6,
             fontWeight: 700,
             fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
@@ -268,80 +285,79 @@ const Home = () => {
             letterSpacing: '0.1em'
           }}
         >
-          Faculty Co-Ordinators
+          Faculty Coordinators
         </Typography>
-        <Grid container spacing={4} justifyContent="center">
-          {organizers.map((organizer, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card
-                component={motion.div}
-                whileHover={{ y: -10, boxShadow: '0 12px 40px rgba(156, 39, 176, 0.25)' }}
-                sx={{ 
-                  height: '100%', 
-                  display: 'flex', 
-                  flexDirection: 'column',
-                  background: 'rgba(18, 18, 18, 0.85)',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(156, 39, 176, 0.2)',
-                  borderRadius: 4,
-                  overflow: 'hidden',
-                  position: 'relative',
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'linear-gradient(90deg, transparent, rgba(156, 39, 176, 0.5), transparent)'
-                  },
-                  transition: 'all 0.4s ease-in-out'
-                }}
+
+        <Grid container spacing={4}>
+          {organizers.map((coordinator, index) => (
+            <Grid item xs={12} sm={6} key={coordinator.name}>
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                whileHover="hover"
+                viewport={{ once: true }}
               >
-                <CardMedia
-                  component="img"
-                  height="300"
-                  image={organizer.image}
-                  alt={organizer.name}
-                  sx={{ 
-                    objectFit: 'cover',
-                    filter: 'grayscale(20%)',
-                    backgroundColor: 'grey.100',
-                    transition: 'all 0.3s ease-in-out',
+                <Card
+                  sx={{
+                    p: 3,
+                    background: 'rgba(18, 18, 18, 0.6)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(156, 39, 176, 0.1)',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
-                      filter: 'grayscale(0%)'
-                    }
+                      border: '1px solid rgba(156, 39, 176, 0.2)',
+                      boxShadow: '0 8px 30px rgba(156, 39, 176, 0.15)',
+                    },
                   }}
-                />
-                <CardContent sx={{ 
-                  flexGrow: 1, 
-                  textAlign: 'center',
-                  p: 3,
-                  background: 'linear-gradient(180deg, rgba(18, 18, 18, 0.7) 0%, rgba(18, 18, 18, 0.9) 100%)'
-                }}>
-                  <Typography 
-                    variant="h6" 
-                    gutterBottom
-                    sx={{
-                      color: '#fff',
-                      fontWeight: 600,
-                      mb: 1
-                    }}
-                  >
-                    {organizer.name}
+                >
+                  <Box sx={{ position: 'relative', mb: 3 }}>
+                    <Avatar
+                      src={coordinator.image}
+                      alt={coordinator.name}
+                       sx={{
+                        width: { xs: 300, sm: 320, md: 340 },
+                        height: { xs: 300, sm: 320, md: 340 },
+                        mx: 'auto',
+                        border: '3px solid',
+                        borderColor: 'primary.main',
+                        boxShadow: '0 8px 32px rgba(156, 39, 176, 0.2)',
+                        transition: 'all 0.3s ease-in-out',
+                        objectFit: 'cover',
+                        objectPosition: 'top center',
+                        background: 'linear-gradient(145deg, rgba(18, 18, 18, 0.8), rgba(9, 9, 9, 0.9))',
+                        borderRadius: '50%',
+                        '&:hover': {
+                          transform: 'scale(1.05)',
+                          boxShadow: '0 12px 40px rgba(156, 39, 176, 0.3)'
+                        }
+                      }}
+                    />
+                  </Box>
+
+                  <Typography variant="h3" align="center" gutterBottom>
+                    {coordinator.name}
                   </Typography>
-                  <Typography 
-                    color="primary.main"
-                    sx={{
-                      fontWeight: 500,
-                      opacity: 0.9,
-                      letterSpacing: '0.5px'
-                    }}
-                  >
-                    {organizer.role}
+                  <Typography variant="subtitle1" align="center" color="primary.main" gutterBottom>
+                    {coordinator.role}
                   </Typography>
-                </CardContent>
-              </Card>
+                  <Typography variant="body2" align="center" color="text.secondary" gutterBottom>
+                    {coordinator.department}
+                  </Typography>
+
+                  <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 2, flexWrap: 'wrap' }}>
+                    {coordinator.expertise.map((skill, idx) => (
+                      <Chip
+                        key={idx}
+                        label={skill}
+                        size="small"
+                        variant="outlined"
+                        sx={{ borderColor: 'primary.main' }}
+                      />
+                    ))}                    
+                  </Box>
+                </Card>
+              </motion.div>
             </Grid>
           ))}
         </Grid>
