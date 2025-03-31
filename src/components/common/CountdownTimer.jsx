@@ -86,7 +86,10 @@ const CountdownTimer = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    width: '100%'
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    mx: 'auto',
+                    textAlign: 'center',
                   }}
                 >
                   <Paper
@@ -106,6 +109,7 @@ const CountdownTimer = () => {
                       boxShadow: '0 8px 32px rgba(156, 39, 176, 0.15)',
                       transition: 'all 0.3s ease',
                       mx: 'auto',
+                      textAlign: 'center',
                       '&:hover': {
                         transform: 'translateY(-5px)',
                         boxShadow: '0 12px 40px rgba(156, 39, 176, 0.25)',
@@ -127,10 +131,16 @@ const CountdownTimer = () => {
                       sx={{
                         fontWeight: 800,
                         color: theme.palette.primary.main,
+                        mx: 'auto',
+                        textAlign: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        display: 'flex',
                         fontFamily: "'Space Grotesk', sans-serif",
+                        justifyContent: 'center',
                         textShadow: '0 0 20px rgba(156, 39, 176, 0.5)',
                         letterSpacing: '0.05em',
-                        transform: 'scale(0.95)',
+                        transform: 'scale(1.2)',
                         transition: 'transform 0.3s ease, color 0.3s ease',
                         fontSize: { xs: '1.25rem', sm: '1.75rem', md: '2.25rem', lg: '2.5rem' },
                         lineHeight: 1.2,
@@ -146,12 +156,16 @@ const CountdownTimer = () => {
                   <Typography
                     variant="subtitle1"
                     sx={{
-                      mt: { xs: 2.5, sm: 3 },
+                      mt: { xs: 0.25, sm: 0.5, md: 0.75 },
+                      textAlign: 'center',
                       color: 'rgba(255, 255, 255, 0.85)',
-                      fontSize: { xs: '0.7rem', sm: '0.85rem', md: '0.95rem' },
+                      fontSize: { xs: '0.8rem', sm: '0.9rem', md: '1rem' },
                       fontWeight: 600,
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase'
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                      lineHeight: 1.4,
+                      width: '100%',
+                      mx: 'auto'
                     }}
                   >
                     {unit.label}
